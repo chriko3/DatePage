@@ -18,6 +18,7 @@
     box-sizing: border-box;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    touch-action: pan-y;
 }
 
 .element iframe {

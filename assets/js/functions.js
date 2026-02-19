@@ -94,13 +94,14 @@ function enableSwipeToDelete() {
 
         el.addEventListener('pointermove', e => {
             if (!isDragging) return;
+            e.preventDefault(); // 🔥 Mobile Fix
             currentX = e.clientX - startX;
             if (currentX > 0) {
                 el.style.transform = `translateX(${currentX}px)`;
             }
         });
 
-        el.addEventListener('pointerup', e => {
+        el.addEventListener('pointerup', async () => {
             isDragging = false;
             if (currentX > el.offsetWidth / 3) {
                 el.classList.add('swipe-out');
