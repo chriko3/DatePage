@@ -11,18 +11,22 @@
 body{
     font-family: "Roboto", Arial, sans-serif;
     background-color: rgb(137, 152, 109);
+    font-size: 30px;
 }
 
 header{
     background-color: rgb(156, 171, 132);
     border-radius: 15px;
     display:flex;
-    justify-content: space-between;
-    padding-left: 10px;
+    justify-content: left;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 h1{
     color: rgb(246, 240, 215);
+    font-weight: 1000;
+    font-size: 60px;
 }
 
 .overlay {
@@ -53,10 +57,13 @@ input{
     background-color: #d4d6ae;
     border: none;
     border-bottom: 1px solid #313131; 
+    font-size: 35px;
 }
 
  input[type=checkbox] {
   accent-color: rgb(137, 152, 109);
+  width: 35px;
+  height: 35px;
 }
 
 button{
@@ -64,8 +71,9 @@ button{
     color: rgb(246, 240, 215);
     border: none;
     border-radius: 8px;
-    padding: 5px;
+    padding: 10px;
     cursor: pointer;
+    font-size: 35px;
 }
 
 .addButton{

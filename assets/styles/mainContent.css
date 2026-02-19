@@ -4,8 +4,8 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    margin:5px 0px;
-    gap: 5px
+    margin:10px 0px;
+    gap: 10px
 }
 
 .element {
@@ -18,7 +18,14 @@
     box-sizing: border-box;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    min-height: 200px;
+    font-size: 35px;
     touch-action: pan-y;
+    user-select: none;
+}
+
+.element.full-width {
+    flex: 1 1 100%;
 }
 
 .element iframe {

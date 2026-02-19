@@ -12,14 +12,14 @@ function elementNormalTemplate(input){
 
 
 function elementAddButtonTemplate(){
-  return `<div class='element addButton' onclick='openAddNewDate()'>
+  return `<div class='element addButton' id='addButton' onclick='openAddNewDate()'>
     Idee hinzufügen 📝
     </div>`;
 }  
 
 function elementBackButtonTemplate(){
   return `
-    <div class='element backButton' onclick='goHome()'>
+    <div class='element backButton' id='backButton' onclick='goHome()'>
     Zurück 🔙
     </div>`;
 }  

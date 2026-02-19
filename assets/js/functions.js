@@ -12,20 +12,25 @@ function loadLoveBox2(){
     renderLoveBox2();
 }
 
-function renderDateIdeas(responseToJson){
+function renderDateIdeas(responseToJson) {
     let mainContent = document.getElementById('mainContent');
     mainContent.innerHTML += elementAddButtonTemplate();
     mainContent.innerHTML += elementBackButtonTemplate();
-    for (const key in responseToJson) {
-        if (responseToJson.hasOwnProperty(key)) {
-            const dateIdea = responseToJson[key];
-            mainContent.innerHTML += elementTemplate(dateIdea, key);
-        }
+    const keys = Object.keys(responseToJson);
+    for (let i = keys.length - 1; i >= 0; i--) {
+        const key = keys[i];
+        const dateIdea = responseToJson[key];
+        mainContent.innerHTML += elementTemplate(dateIdea, key);
     }
 }
 
+
 function renderLoveBox2(){
     const mainContent = document.getElementById('mainContent');
+    mainContent.innerHTML += elementBackButtonTemplate();
+
+    let backButton = document.getElementById('backButton');
+    backButton.classList.add('full-width');
 
     const targetDate = new Date('2025-11-28');
     mainContent.innerHTML += elementNormalTemplate('28.11.2025 🫶🏻');
@@ -38,7 +43,7 @@ function renderLoveBox2(){
     const mapsIframe = `<iframe 
         src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d810.4403797459418!2d16.72002487644746!3d48.34228647153582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sde!2sat!4v1771506364053!5m2!1sde!2sat" 
         width="100%" 
-        height="200" 
+        height="250" 
         style="border:0;" 
         allowfullscreen="" 
         loading="lazy" 
@@ -87,6 +92,7 @@ function enableSwipeToDelete() {
         let isDragging = false;
 
         el.addEventListener('pointerdown', e => {
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
             startX = e.clientX;
             isDragging = true;
             el.setPointerCapture(e.pointerId);
@@ -94,17 +100,22 @@ function enableSwipeToDelete() {
 
         el.addEventListener('pointermove', e => {
             if (!isDragging) return;
-            e.preventDefault(); // 🔥 Mobile Fix
+
             currentX = e.clientX - startX;
+
             if (currentX > 0) {
                 el.style.transform = `translateX(${currentX}px)`;
             }
         });
 
-        el.addEventListener('pointerup', async () => {
+        el.addEventListener('pointerup', async e => {
             isDragging = false;
-            if (currentX > el.offsetWidth / 3) {
-                el.classList.add('swipe-out');
+            el.releasePointerCapture(e.pointerId);
+
+            if (currentX > el.offsetWidth * 0.35) {
+                el.style.transform = `translateX(120%)`;
+                el.style.opacity = '0';
+
                 setTimeout(async () => {
                     el.remove();
                     if (key) await deleateFromDB(key);
@@ -112,6 +123,7 @@ function enableSwipeToDelete() {
             } else {
                 el.style.transform = 'translateX(0)';
             }
+
             currentX = 0;
         });
 
