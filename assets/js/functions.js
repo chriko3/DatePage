@@ -31,6 +31,7 @@ function renderLoveBox2(){
 
     let backButton = document.getElementById('backButton');
     backButton.classList.add('full-width');
+    
 
     const targetDate = new Date('2025-11-28');
     mainContent.innerHTML += elementNormalTemplate('28.11.2025 🫶🏻');
