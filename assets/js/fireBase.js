@@ -3,6 +3,7 @@ const BASE_URL = 'https://datepage-2811-default-rtdb.europe-west1.firebasedataba
 async function loadDateIdeasFromDB(path = ''){
     let response = await fetch(BASE_URL + path + '.json');
     let responseToJson = await response.json();
+    clearMainContent();
     renderDateIdeas(responseToJson);
     enableSwipeToDelete();
 }
