@@ -106,6 +106,7 @@ button{
     display: block;
     margin: 0 auto;
     object-fit: cover;
+    transform: scaleX(-1);
 }
 
 #countdown {

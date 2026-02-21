@@ -43,17 +43,35 @@ function takePhoto() {
     c.height = size;
     const ctx = c.getContext("2d");
 
+    ctx.save();
+    ctx.translate(size, 0);
+    ctx.scale(-1, 1);
+
     const videoAspect = video.videoWidth / video.videoHeight;
+
     if (videoAspect > 1) {
         const cropWidth = video.videoHeight;
         const cropX = (video.videoWidth - cropWidth) / 2;
-        ctx.drawImage(video, cropX, 0, cropWidth, video.videoHeight, 0, 0, size, size);
+        ctx.drawImage(
+            video,
+            cropX, 0,
+            cropWidth, video.videoHeight,
+            0, 0,
+            size, size
+        );
     } else {
         const cropHeight = video.videoWidth;
         const cropY = (video.videoHeight - cropHeight) / 2;
-        ctx.drawImage(video, 0, cropY, video.videoWidth, cropHeight, 0, 0, size, size);
+        ctx.drawImage(
+            video,
+            0, cropY,
+            video.videoWidth, cropHeight,
+            0, 0,
+            size, size
+        );
     }
 
+    ctx.restore();
     photoCanvases.push(c);
 }
 
