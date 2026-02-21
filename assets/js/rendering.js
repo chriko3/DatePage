@@ -75,7 +75,7 @@ function renderPhotobooth(){
    
     mainContent.innerHTML += elementNormalTemplate(`
         <a id="startPhotobooth">
-            Start 🌟
+            Start 🖼️
         </a>
     `);
 
