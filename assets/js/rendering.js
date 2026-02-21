@@ -77,13 +77,7 @@ function renderPhotobooth(){
         <a id="startPhotobooth">
             Start 🖼️
         </a>
-    `);
-
-    mainContent.innerHTML += elementNormalTemplate(`
-        <a id="downloadPhotobooth" download="photobooth.png">
-            Download ⬇️
-        </a>
-    `);
+    `, 'startPhoto()');
 
     initPhotobooth();
 }
